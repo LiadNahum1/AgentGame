@@ -21,6 +21,7 @@ public class Game {
             for(int j=i+1; j<matrixNegibors.length; j++){
                 //todo build randomize matrix
                 //todo build edge and add to each agent
+                // make sure nobady has more than 10 nigbors
             }
         }
     }

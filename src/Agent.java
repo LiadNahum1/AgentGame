@@ -7,6 +7,10 @@ public class Agent {
     private Vector<Edge> edges;
     private Vector<Agent> neigbors;
     public Agent(int id ) {
+        this.id= id;
+        this.currStrat = 0;
+        this.edges = new Vector<>();
+        this.neigbors = new Vector<>();
     }
     public int calcPayment(){ //how much money neighbors pay for me (T)
         int payment = 0;
