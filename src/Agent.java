@@ -4,9 +4,11 @@ public class Agent {
     private final int stargNumber = 10;
     private int id;
     private int currStrat;
+    private int strategychosen;
     private Vector<Edge> edges;
-    public Agent(int id ) {
+    public Agent(int id , int strategychosen) {
         this.id= id;
+        this.strategychosen = strategychosen;
         this.currStrat = 0;
         this.edges = new Vector<>();
     }
@@ -76,19 +78,23 @@ public class Agent {
     }
 
     private int calcPaymant(int replace, Edge e) { //(T')
-        int pay =0;
-        if(e.getAgent1().id == this.id) {
-            //previous overall earn - after change earn
-            pay = (e.getUtility()[this.currStrat][e.getAgent2().currStrat].getNum2() - e.getPay21()) - (e.getUtility()[replace][e.getAgent2().currStrat].getNum2());
-            if(pay > 0)
-                e.setPay21(pay); //if not change the payment update is right, if change will update to 0
+        if(strategychosen == 1) {
+            int pay = 0;
+            if (e.getAgent1().id == this.id) {
+                //previous overall earn - after change earn
+                pay = (e.getUtility()[this.currStrat][e.getAgent2().currStrat].getNum2() - e.getPay21()) - (e.getUtility()[replace][e.getAgent2().currStrat].getNum2());
+                if (pay > 0)
+                    e.setPay21(pay); //if not change the payment update is right, if change will update to 0
+            } else {
+                pay = (e.getUtility()[e.getAgent1().currStrat][this.currStrat].getNum1() - e.getPay12()) - (e.getUtility()[e.getAgent1().currStrat][replace].getNum1());
+                if (pay > 0)
+                    e.setPay12(pay);
+            }
+            return pay;
         }
-        else{
-            pay = (e.getUtility()[e.getAgent1().currStrat][this.currStrat].getNum1() - e.getPay12()) - (e.getUtility()[e.getAgent1().currStrat][replace].getNum1());
-            if(pay > 0)
-                e.setPay12(pay);
+        else {
+            return 0;
         }
-        return pay;
     }
 
     private int calcGain(int strategy){

@@ -38,7 +38,7 @@ public class Game {
          this.agents = new Agent[numOfAg];
          this.matrixNegibors = new int [numOfAg][numOfAg];
          for (int i =0; i< numOfAg ;i++){
-             agents[i] = new Agent(i);
+             agents[i] = new Agent(i,strategyOfPaymant);
          }
             buildMarixNegibors(matrixNegibors);
          startExp();
