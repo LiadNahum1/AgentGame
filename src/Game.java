@@ -6,15 +6,17 @@ public class Game {
     private Random r = new Random();
      private int numOfAg;
      private Agent [] agents ;
-     private int [][] matrixNegibors;
+     private int [][] matrixNeighbors;
+    private int gameEarns;
+    private int strategyOfPayment;
     private int  turnsplayed;
 
     public int getNumOfAg() {
         return numOfAg;
     }
 
-    public int[][] getMatrixNegibors() {
-        return matrixNegibors;
+    public int[][] getMatrixNeighbors() {
+        return matrixNeighbors;
     }
 
     public int getTurnsplayed() {
@@ -25,34 +27,24 @@ public class Game {
         return gameEarns;
     }
 
-    public int getStrategyOfPaymant() {
-        return strategyOfPaymant;
-    }
 
-    private int gameEarns;
-    private int strategyOfPaymant;
-
-     public Game(int numOfAg , int strategyOfPaymant) {
-         this.strategyOfPaymant = strategyOfPaymant;
+     public Game(int numOfAg , int strategyOfPayment) {
+         this.strategyOfPayment = strategyOfPayment;
          this.numOfAg = numOfAg;
          this.agents = new Agent[numOfAg];
-         this.matrixNegibors = new int [numOfAg][numOfAg];
+         this.matrixNeighbors = new int [numOfAg][numOfAg];
          for (int i =0; i< numOfAg ;i++){
-             agents[i] = new Agent(i,strategyOfPaymant);
+             agents[i] = new Agent(i,strategyOfPayment);
          }
-            buildMarixNegibors(matrixNegibors);
+            buildMarixNegibors(matrixNeighbors);
          startExp();
      }
 
     private void buildMarixNegibors(int[][] matrixNegibors) {
-        int isNegibor;
-        Edge edge;
         ArrayList<Integer> list = new ArrayList<Integer>();
         for (int i=1; i<numOfAg; i++) {
             list.add(i);
         }
-
-
         for(int i=0; i<numOfAg-1; i++){
             Collections.shuffle(list);
             int neigborsNum = agents[i].getEdges().size();
@@ -75,7 +67,7 @@ public class Game {
             int countStable = 0, j =0;
             boolean res = true;
             while(countStable < numOfAg && turnsplayed <= 100000000) {
-                res = agents[j].palyTurn();
+                res = agents[j].playTurn();
                 if (!res) //agent didn't want to change strategy = he is stable
                     countStable = countStable + 1;
                 else

@@ -42,14 +42,14 @@ public class Agent {
         }
         return earn;
     }
-    public boolean palyTurn(){
+    public boolean playTurn(){
     int imp =0;
     int Ttag =0;
 
     for (int i =0 ; i<stargNumber; i++){
                 imp = calcGain(i); //the gain from switching to the i'th strategy
                 if(imp > calcCurrentEarn() + calcPayment()) {
-                    Ttag = announschange(i); // announse about to chane
+                    Ttag = announceChange(i); // announce about to chane
                     if (imp > calcCurrentEarn() + Ttag) { //check if to actoualy change
                         changeStrat(i);
                         return true;
@@ -69,15 +69,15 @@ public class Agent {
         }
     }
 
-    private int announschange(int replace) {
+    private int announceChange(int replace) {
         int sumGain = 0;
         for (Edge e: edges) {
-            sumGain = sumGain + calcPaymant(replace ,e); //how much they want to give as in order to stay
+            sumGain = sumGain + calcPayment(replace ,e); //how much they want to give as in order to stay
         }
         return sumGain;
     }
 
-    private int calcPaymant(int replace, Edge e) { //(T')
+    private int calcPayment(int replace, Edge e) { //(T')
         if(strategychosen == 1) {
             int pay = 0;
             if (e.getAgent1().id == this.id) {

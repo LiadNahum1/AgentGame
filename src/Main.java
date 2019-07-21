@@ -4,9 +4,9 @@ public class Main {
 
     public static void main(String[] args) {
         Scanner s = new Scanner(System.in);
-        System.out.println("how Much experiments would you like to do?");
+        System.out.println("How many experiments would you like to do?");
         int numOfExp = s.nextInt();
-        System.out.println("how Much agents would you like to have?");
+        System.out.println("How many agents would you like to have?");
         int numOfAg = s.nextInt();
         System.out.println("Which strategy to play with?");
         int chosenStrat = s.nextInt();
@@ -17,8 +17,8 @@ public class Main {
             totalGameTurns += g.getTurnsplayed();
             g.printAgentStrat();
         }
-        System.out.println(" took to play in avrage " + totalGameTurns/numOfExp);
-        System.out.println(" avrage welfare " + totalGameEarn/numOfExp);
+        System.out.println("Average iterations " + totalGameTurns/numOfExp);
+        System.out.println("Average welfare " + totalGameEarn/numOfExp);
 
 
     }
