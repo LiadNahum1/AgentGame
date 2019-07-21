@@ -2,6 +2,8 @@ import java.util.Random;
 public class Edge {
     private Agent agent1;
     private Agent agent2;
+    private int pay12;  //agent1 pays agent2
+    private int pay21;  //agent2 pays agent1
     private final int stargNumber = 10;
     private final int limit = 5; //ask
     private Pair [][] utility;
@@ -41,5 +43,21 @@ public class Edge {
 
     public Pair[][] getUtility() {
         return utility;
+    }
+
+    public int getPay12() {
+        return pay12;
+    }
+
+    public int getPay21() {
+        return pay21;
+    }
+
+    public void setPay12(int pay12) {
+        this.pay12 = pay12;
+    }
+
+    public void setPay21(int pay21) {
+        this.pay21 = pay21;
     }
 }
