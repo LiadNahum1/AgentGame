@@ -5,12 +5,10 @@ public class Agent {
     private int id;
     private int currStrat;
     private Vector<Edge> edges;
-    private Vector<Agent> neigbors;
     public Agent(int id ) {
         this.id= id;
         this.currStrat = 0;
         this.edges = new Vector<>();
-        this.neigbors = new Vector<>();
     }
     public int calcPayment(){ //how much money neighbors pay for me (T)
         int payment = 0;
@@ -102,6 +100,22 @@ public class Agent {
                 gain = gain + e.getUtility()[e.getAgent1().currStrat][strategy].getNum2();
         }
         return gain;
+    }
+
+    public int getStargNumber() {
+        return stargNumber;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public int getCurrStrat() {
+        return currStrat;
+    }
+
+    public Vector<Edge> getEdges() {
+        return edges;
     }
 
 }
