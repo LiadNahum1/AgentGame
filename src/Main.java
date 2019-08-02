@@ -8,9 +8,10 @@ public class Main {
         int numOfExp = s.nextInt();
         System.out.println("How many agents would you like to have?");
         int numOfAg = s.nextInt();
-        System.out.println("Which strategy to play with?");
+        System.out.println("Which strategy of convincing not to move do you prefer? ");
         int chosenStrat = s.nextInt();
-        int totalGameTurns = 0, totalGameEarn =0;
+        int totalGameTurns = 0;
+        double totalGameEarn =0;
         for(int i = 0; i<numOfExp; i++){
             Game g = new Game(numOfAg ,chosenStrat);
             totalGameEarn += g.getGameEarns();

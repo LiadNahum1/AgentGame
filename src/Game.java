@@ -7,7 +7,7 @@ public class Game {
      private int numOfAg;
      private Agent [] agents ;
      private int [][] matrixNeighbors;
-    private int gameEarns;
+    private double gameEarns;
     private int strategyOfPayment;
     private int  turnsplayed;
 
@@ -23,7 +23,7 @@ public class Game {
         return turnsplayed;
     }
 
-    public int getGameEarns() {
+    public double getGameEarns() {
         return gameEarns;
     }
 
@@ -36,19 +36,19 @@ public class Game {
          for (int i =0; i< numOfAg ;i++){
              agents[i] = new Agent(i,strategyOfPayment);
          }
-            buildMarixNegibors(matrixNeighbors);
+            buildMatrixOfNeighbors(matrixNeighbors);
          startExp();
      }
 
-    private void buildMarixNegibors(int[][] matrixNegibors) {
+    private void buildMatrixOfNeighbors(int[][] matrixNegibors) {
         ArrayList<Integer> list = new ArrayList<Integer>();
         for (int i=1; i<numOfAg; i++) {
             list.add(i);
         }
         for(int i=0; i<numOfAg-1; i++){
             Collections.shuffle(list);
-            int neigborsNum = agents[i].getEdges().size();
-            for(int j = 0; j < list.size() && j < 10 - neigborsNum; j++){
+            int neighborsNum = agents[i].getEdges().size();
+            for(int j = 0; j < list.size() && j < 10 - neighborsNum; j++){
                 if(this.agents[list.get(j)].getEdges().size()<10) {
                     Edge e = new Edge(this.agents[i], this.agents[list.get(j)]);
                     agents[i].getEdges().add(e);
@@ -84,18 +84,18 @@ public class Game {
             }
             gameEarns = totalWelfare();
         }
-        public int totalWelfare(){
-         int welfare = 0 ;
+        public double totalWelfare(){
+         double welfare = 0 ;
          for(int i=0; i< numOfAg; i++){
-             welfare = welfare + agents[i].calcCurrentEarn() + agents[i].calcPayment() - agents[i].calcPays();
+             welfare = welfare + agents[i].calcCurrentEarn() + agents[i].calcNeighborsPayment() - agents[i].calcIPay();
          }
          return welfare;
         }
 
         public void printAgentStrat() {
             for (int i = 0; i < numOfAg; i++) {
-                System.out.println("Agent " + agents[i].getId() + " Strategy " + agents[i].getCurrStrat() + "total earn " + agents[i].calcCurrentEarn()
-                + "payment " + agents[i].calcPays());
+                System.out.println("Agent " + agents[i].getId() + " Strategy " + agents[i].getCurrStrat() + " total earn " + agents[i].calcCurrentEarn()
+                + " payment " + agents[i].calcIPay());
             }
         }
 }

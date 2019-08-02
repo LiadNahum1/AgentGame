@@ -2,10 +2,10 @@ import java.util.Random;
 public class Edge {
     private Agent agent1;
     private Agent agent2;
-    private int pay12;  //agent1 pays agent2
-    private int pay21;  //agent2 pays agent1
+    private double pay12;  //agent1 pays agent2
+    private double pay21;  //agent2 pays agent1
     private final int stargNumber = 10;
-    private final int limit = 5; //ask
+    private final int limit = 5;
     private Pair [][] utility;
 
     public Edge(Agent agent1, Agent agent2){
@@ -45,19 +45,19 @@ public class Edge {
         return utility;
     }
 
-    public int getPay12() {
+    public double getPay12() {
         return pay12;
     }
 
-    public int getPay21() {
+    public double getPay21() {
         return pay21;
     }
 
-    public void setPay12(int pay12) {
+    public void setPay12(double pay12) {
         this.pay12 = pay12;
     }
 
-    public void setPay21(int pay21) {
+    public void setPay21(double pay21) {
         this.pay21 = pay21;
     }
 }
