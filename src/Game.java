@@ -79,7 +79,7 @@ public class Game {
                     j = j + 1;
                 turnsplayed = turnsplayed + 1;
             }
-            if(j == 100000000){
+            if(turnsplayed == 100000000){
                 System.out.println("error game doesnt end");
             }
             gameEarns = totalWelfare();
